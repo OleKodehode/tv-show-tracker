@@ -15,7 +15,7 @@ function WatchlistTable() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('watchlist', JSON.stringify(watchlist));
+    localStorage.setItem('watchlist', JSON.stringify(watchlist));
   }, [watchlist]);
 
   const handleAdd = (newItem) => {
@@ -35,8 +35,8 @@ function WatchlistTable() {
   };
 
   const handleSave = () => {
-    window.localStorage.setItem('watchlist', JSON.stringify(watchlist));
-    console.log('Watchlist saved:', JSON.parse(window.localStorage.getItem('watchlist')));
+    localStorage.setItem('watchlist', JSON.stringify(watchlist));
+    console.log('Watchlist saved:', JSON.parse(localStorage.getItem('watchlist')));
   };
 
   return (
