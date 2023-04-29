@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
 
-function WatchlistTable() {
-  const [watchlist, setWatchlist] = useState([]);
+function WatchlistTable(props) {
+  const [watchlist, setWatchlist] = useState(props.watchlist);
 
   useEffect(() => {
     const storedWatchlist = JSON.parse(localStorage.getItem('watchlist'));
@@ -17,10 +17,6 @@ function WatchlistTable() {
   useEffect(() => {
     localStorage.setItem('watchlist', JSON.stringify(watchlist));
   }, [watchlist]);
-
-  const handleAdd = (newItem) => {
-    setWatchlist([...watchlist, newItem]);
-  };
 
   const handleEdit = (index, editedItem) => {
     const newWatchlist = [...watchlist];
@@ -37,6 +33,10 @@ function WatchlistTable() {
   const handleSave = () => {
     localStorage.setItem('watchlist', JSON.stringify(watchlist));
     console.log('Watchlist saved:', JSON.parse(localStorage.getItem('watchlist')));
+  };
+
+  const handleAdd = (newItem) => {
+    setWatchlist([...watchlist, newItem]);
   };
 
   return (

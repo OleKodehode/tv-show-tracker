@@ -1,7 +1,6 @@
 import WatchlistTable from '@/components/WatchlistTable';
 import { useState } from 'react';
 
-
 export default function Home() {
   const [watchlist, setWatchlist] = useState([]);
 
@@ -13,7 +12,7 @@ export default function Home() {
 
   return (
     <div>
-      <WatchlistTable watchlist={watchlist} />
+      <WatchlistTable watchlist={watchlist} setWatchlist={setWatchlist} />
     </div>
   );
 }
