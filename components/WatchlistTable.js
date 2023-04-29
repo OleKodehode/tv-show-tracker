@@ -5,17 +5,21 @@ function WatchlistTable(props) {
   const [watchlist, setWatchlist] = useState(props.watchlist);
 
   useEffect(() => {
-    const storedWatchlist = JSON.parse(localStorage.getItem('watchlist'));
-    console.log('Retrieved from local storage:', storedWatchlist);
-    if (storedWatchlist) {
-      setWatchlist(storedWatchlist);
-    } else {
-      setWatchlist([]);
+    if (typeof window !== 'undefined') {
+      const storedWatchlist = JSON.parse(localStorage.getItem('watchlist'));
+      console.log('Retrieved from local storage:', storedWatchlist);
+      if (storedWatchlist) {
+        setWatchlist(storedWatchlist);
+      } else {
+        setWatchlist([]);
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('watchlist', JSON.stringify(watchlist));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('watchlist', JSON.stringify(watchlist));
+    }
   }, [watchlist]);
 
   const handleEdit = (index, editedItem) => {

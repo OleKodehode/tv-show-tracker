@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function SearchForm(props) {
   const { handleAdd } = props;
@@ -7,17 +7,18 @@ export default function SearchForm(props) {
   const [episode, setEpisode] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
-  const handleNameChange = async (event) => {
+  const handleNameChange = (event) => {
     const query = event.target.value;
     setName(query);
     if (query) {
-      try {
-        const res = await fetch(`https://api.tvmaze.com/search/shows?q=${query}`);
-        const data = await res.json();
-        setSuggestions(data.map((item) => item.show.name));
-      } catch (error) {
-        console.error(error);
-      }
+      fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
+        .then(res => res.json())
+        .then(data => {
+          setSuggestions(data.map((item) => item.show.name));
+        })
+        .catch(error => {
+          console.error(error);
+        });
     } else {
       setSuggestions([]);
     }
