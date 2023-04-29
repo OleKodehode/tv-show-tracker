@@ -35,20 +35,30 @@ export default function SearchForm(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+    >
       <label>
         TV Show:
-        <input type="text" value={name} onChange={handleNameChange} />
+        <input
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+        />
         {suggestions.length > 0 && (
           <ul>
             {suggestions.map((item, index) => (
-              <li key={index} onClick={() => setName(item)}>
+              <li
+                key={index}
+                onClick={() => setName(item)}
+              >
                 {item}
               </li>
             ))}
           </ul>
         )}
       </label>
+      <br/>
       <label>
         Season:
         <input
@@ -58,6 +68,7 @@ export default function SearchForm(props) {
           placeholder="Enter season number"
         />
       </label>
+      <br/>
       <label>
         Episode:
         <input
@@ -67,7 +78,12 @@ export default function SearchForm(props) {
           placeholder="Enter episode number"
         />
       </label>
-      <button type="submit">Add to Watchlist</button>
+      <br/>
+      <button
+        type="submit"
+      >
+        Add to Watchlist
+      </button>
     </form>
   );
 }

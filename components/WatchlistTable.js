@@ -47,35 +47,67 @@ function WatchlistTable(props) {
 
   return (
     <div>
-      <h1>My Watchlist</h1>
-      <SearchForm handleAdd={handleAdd} />
+      <SearchForm
+        handleAdd={handleAdd}
+      />
       <table>
         <thead>
           <tr>
-            <th>TV Show</th>
-            <th>Season</th>
-            <th>Episode</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>
+              TV Show
+            </th>
+            <th>
+              Season
+            </th>
+            <th>
+              Episode
+            </th>
+            <th>
+              Edit
+            </th>
+            <th>
+              Delete
+            </th>
           </tr>
         </thead>
         <tbody>
           {watchlist.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.season}</td>
-              <td>{item.episode}</td>
+            <tr
+              key={index}
+            >
               <td>
-                <button onClick={() => handleEdit(index, { ...item, name: prompt('Enter new name', item.name) })}>Edit</button>
+                {item.name}
               </td>
               <td>
-                <button onClick={() => handleDelete(index)}>Delete</button>
+                {item.season}
+              </td>
+              <td>
+                {item.episode}
+              </td>
+              <td>
+                <button
+                  onClick={() => handleEdit(index, 
+                    { ...item, name: prompt('Enter new name', item.name) })}
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => handleDelete(index)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button onClick={handleSave}>Save</button>
+      <button
+        onClick={handleSave}
+      >
+        Save
+      </button>
     </div>
   );
 }
