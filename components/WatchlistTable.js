@@ -31,8 +31,10 @@ function WatchlistTable(props) {
   };
 
   const handleSave = () => {
-    localStorage.setItem('watchlist', JSON.stringify(watchlist));
-    console.log('Watchlist saved:', JSON.parse(localStorage.getItem('watchlist')));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('watchlist', JSON.stringify(watchlist));
+      console.log('Watchlist saved:', JSON.parse(localStorage.getItem('watchlist')));
+    }
   };
 
   const handleAdd = (newItem) => {
